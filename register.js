@@ -1,12 +1,12 @@
 import { NetworkApi, WalletApi } from '@thepowereco/tssdk';
 import {writeFileSync} from 'fs';
 
-//register in chain number 1033
-let acc = await WalletApi.registerCertainChain(1033);
+//register in chain number 1
+let acc = await WalletApi.registerCertainChain(1);
 console.log('register data',acc);
 
 //save account data to file
-const networkApi = new NetworkApi(1033);
+const networkApi = new NetworkApi(1);
 const walletApi = new WalletApi(networkApi);
 
 let password='111';
