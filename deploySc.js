@@ -1,6 +1,6 @@
-import { NetworkApi, WalletApi, TransactionsApi } from '@thepowereco/tssdk';
-import {readFileSync} from 'fs';
-import greeter_sol_Greeter from './greeter_sol_Greeter.json' assert { type: 'json' };
+import { NetworkApi, WalletApi, TransactionsApi } from "@thepowereco/tssdk";
+import { readFileSync } from "fs";
+import greeter_sol_Greeter from "./greeter_sol_Greeter.json" assert { type: "json" };
 
 async function main() {
   //load account data from file
@@ -8,7 +8,7 @@ async function main() {
   await networkApi.bootstrap();
   const importWalletApi = new WalletApi(networkApi);
   let password = "111";
-  
+
   const importedData = readFileSync("example.pem");
   const importedWallet = await importWalletApi.parseExportData(
     importedData.toString(),
@@ -16,11 +16,8 @@ async function main() {
   );
   console.log("import data", importedWallet);
 
-  // const greeter_sol_Greeter = require("./greeter_sol_Greeter.json");
-
   //load balance for account
-  const walletApi = new WalletApi(networkApi);
-  const accountData = await walletApi.loadBalance(importedWallet.address);
+  const accountData = await importWalletApi.loadBalance(importedWallet.address);
   console.log("accountData", accountData);
 
   // deploy smart-contract
@@ -32,7 +29,6 @@ async function main() {
     gasToken: "SK",
     gasValue: 2000000000,
     wif: importedWallet.wif,
-    vm: "evm",
     abi: greeter_sol_Greeter,
     feeSettings: networkApi.feeSettings,
     gasSettings: networkApi.gasSettings,
