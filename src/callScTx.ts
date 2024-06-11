@@ -5,7 +5,7 @@ import {
   EvmContract,
 } from "@thepowereco/tssdk";
 import { readFileSync } from "fs";
-import greeter_sol_Greeter from "./greeter_sol_Greeter.json" assert { type: "json" };
+import greeter_sol_Greeter from "../greeter_sol_Greeter.json";
 
 async function main() {
   //load account data from file
